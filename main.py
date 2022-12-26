@@ -4,7 +4,12 @@ DEAD_CELL = 0
 
 class GameOfLife:
 
-    def __init__(self, state):
+    def __init__(self, state: list[list[int]]):
+        """ Constructor
+
+        Params:
+            state (List[List[int]]): starting seed state
+        """
         self.__state = state
         self.__generation = 0
 
@@ -29,9 +34,8 @@ class GameOfLife:
                 next_state.append(next_row)
             self.__generation += 1
             change_occured = self.__has_changed(next_state)
-            if change_occured:
-                self.__state = next_state
-                self.__print_state()
+            self.__state = next_state
+            self.__print_state()
 
     def __has_changed(self, next_state) -> bool:
         """ Has there been a a change in cells from generation to generation
@@ -111,6 +115,24 @@ class GameOfLife:
 
 
 if __name__ == '__main__':
+    print("Demonstrating Test Pattern 1")
+    game = GameOfLife(
+        [
+            [0, 1, 0],
+            [0, 0, 1],
+            [1, 1, 1],
+            [0, 0, 0]
+        ]
+    )
+    game.run()
+    print("Demonstrating Test Pattern 2")
+    game = GameOfLife(
+        [
+            [1, 1],
+            [1, 0]
+        ]
+    )
+    game.run()
     print("Demonstrating Glider pattern")
     game = GameOfLife(
         [
