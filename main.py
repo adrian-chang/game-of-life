@@ -3,6 +3,8 @@ DEAD_CELL = 0
 
 
 class GameOfLife:
+    """ Demonstrate Game Of Life Problem
+    """
 
     def __init__(self, state: list[list[int]]):
         """ Constructor
@@ -25,6 +27,7 @@ class GameOfLife:
                 next_row = []
                 for column in range(len(self.__state[row])):
                     cell_type = self.__state[row][column]
+                    # logic based on counts
                     live_count = self.__count_surrounding_alive_cells(row, column)
                     if cell_type == ALIVE_CELL:
                         next_cell = self.__alive_cell(live_count) 
@@ -33,6 +36,7 @@ class GameOfLife:
                     next_row.append(next_cell)
                 next_state.append(next_row)
             self.__generation += 1
+            # keep going until a change has not occured anymore
             change_occured = self.__has_changed(next_state)
             self.__state = next_state
             self.__print_state()
